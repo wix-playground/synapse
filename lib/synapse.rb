@@ -5,6 +5,7 @@ require "synapse/version"
 require "synapse/log"
 require "synapse/haproxy"
 require "synapse/file_output"
+require "synapse/nginx_config"
 require "synapse/service_watcher"
 
 
@@ -28,6 +29,7 @@ module Synapse
       # want to communicate via haproxy, e.g. cassandra
       if opts.has_key?('file_output')
         @config_generators << FileOutput.new(opts['file_output'])
+        @config_generators << NginxConfig.new(opts['file_output'])
       end
 
       # configuration is initially enabled to configure on first loop
