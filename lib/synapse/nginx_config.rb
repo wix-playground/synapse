@@ -35,9 +35,10 @@ module Synapse
       data_path = File.join(@opts['output_directory'], "#{service_name}.conf")
         # Atomically write new sevice configuration file
         content = "upstream #{service_name} {
-  zone #{service_name} 128k;
-          #{new_backends.map{|b| "server #{b["host"]}:#{b["port"]}; "}.join("\n")}
-}"
+zone #{service_name} 128k;
+#{new_backends.map{|b| "server #{b["host"]}:#{b["port"]}; "}.join("\n")}
+}
+"
         temp_path = File.join(@opts['output_directory'],
                               ".#{service_name}.conf.tmp")
         File.open(temp_path, 'w', 0644) {|f| f.write(content)}
