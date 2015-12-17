@@ -36,6 +36,7 @@ module Synapse
         # Atomically write new sevice configuration file
         content = "upstream #{service_name} {
 zone #{service_name} 128k;
+server 127.0.0.1:9999 backup;
 #{new_backends.map{|b| "server #{b["host"]}:#{b["port"]}; "}.join("\n")}
 }
 "
