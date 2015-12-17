@@ -1,0 +1,45 @@
+{
+  "services": {
+    "com.wixpress.apollo.backend.sample-web-service": {
+      "default_servers": [
+      ],
+      "discovery": {
+        "method": "marathon",
+        "marathon_api_url": "http://10.15.100.24:5060/",
+        "application_name": "/production/com.wixpress.apollo/backend/sample-web-service"
+      },
+      "haproxy": {
+        "port": 3213,
+        "server_options": "check inter 2s rise 3 fall 2",
+        "listen": [
+          "mode http",
+          "option httpchk /health",
+          "http-check expect string OK"
+        ]
+      }
+      
+    },
+    "com.wixpress.apollo.backend.sample-rpc-service": {
+      "default_servers": [
+      ],
+      "discovery": {
+        "method": "marathon",
+        "marathon_api_url": "http://10.15.100.24:5060/",
+        "application_name": "/production/com.wixpress.apollo/backend/sample-rpc-service"
+      },
+      "haproxy": {
+        "port": 3213,
+        "server_options": "check inter 2s rise 3 fall 2",
+        "listen": [
+          "mode http",
+          "option httpchk /health",
+          "http-check expect string OK"
+        ]
+      }
+      
+    }
+  },
+  "file_output": {
+    "output_directory": "./json/"
+  }
+}
