@@ -8,5 +8,5 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN bundle install
 
-CMD ["bundle exec bin/synapse -c config/synapse.conf.apollo.json"]
+CMD ["/usr/local/bundle/bin/bundle", "exec", "bin/synapse", "-c/usr/src/app/config/synapse.conf.apollo.json"]
 
