@@ -51,6 +51,8 @@ zone #{service_name} 128k;
       FileUtils.cd(@opts['output_directory']) do
         present_files = Dir.glob('*.conf')
         managed_files = current_watchers.collect {|watcher| "#{watcher.name}.conf"}
+        managed_files << "services.conf"
+        managed_files << "web.conf"
         files_to_purge = present_files.select {|svc| not managed_files.include?(svc)}
         log.info "synapse: purging unknown service files #{files_to_purge}" if files_to_purge.length > 0
         FileUtils.rm(files_to_purge)
